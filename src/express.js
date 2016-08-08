@@ -10,6 +10,6 @@ const app = express();
 const getEndPoint = fbWebhookGet(config);
 const postEndPoint = postWebhook(config);
 app.use(bodyParser.raw({ type: 'application/json' }));
-app.get(config.getPath, getEndPoint);
-app.post(config.postPath, postEndPoint);
+app.get(config.webhookPath, getEndPoint);
+app.post(config.webhookPath, postEndPoint);
 app.listen(config.port, () => log(config.messages.serverRunning(config.port)));
