@@ -3,17 +3,28 @@
   "version": "0.1.1",
   "main": "./src/index.js",
   "license": "AGPL-3.0",
-  "files": [
-    "src/aws.js",
-    "config.js"
-  ],
+  "scripts-info": {
+    "build:npm": "Builds the transpiled npm package under dist/npm",
+    "build:aws": "Builds a version of the app that can run on AWS using claudia-api-builder",
+    "create:aws": "Creates the necessary roles on AWS and deploy the app lambdas using claudiajs",
+    "destroy:aws": "Cleans the roles on AWS and destroy the app lambdas using claudiajs",
+    "publish:aws": "Updates de AWS distro and deploy it",
+    "ppp": "Increases the version patch number, push to github and publish to npm",
+    "mpp": "Increases the version minor number, push to github and publish to npm"
+  },
   "scripts": {
+    "info": "npm-scripts-info",
     "start": "NODE_DEBUG=dev babel-node ./src/express.js",
-    "build:npm": "babel --ignore node_modules,dist --out-dir ./dist/npm .",
-    "build:aws": "babel --out-file dist/aws/aws.js src/aws.js",
-    "postbuild:aws": "cp config.js dist/aws/.",
-    "postbuild:npm": "cp package.json dist/npm/.",
+    "build:npm": "babel --ignore node_modules,dist,tasks --out-dir ./dist/npm .",
+    "postbuild:npm": "babel-node tasks/npmPostBuild.js",
     "publish:npm": "npm run build:npm && npm publish dist/npm",
+    "build:aws": "npm run build:npm",
+    "prebuild:aws": "babel-node tasks/awsPreBuild.js",
+    "postbuild:aws": "babel-node tasks/awsPostBuild.js",
+    "create:aws": "claudia create --region us-east-1 --source ./dist/aws/ --api-module aws",
+    "destroy:aws": "claudia destroy --source ./dist/aws/ --api-module aws",
+    "publish:aws": "claudia update --source ./dist/aws/",
+    "prepublish:aws": "npm run build:aws",
     "ppp": "npm version patch && git push && git push --tags && npm run publish:npm",
     "mpp": "npm version minor && git push && git push --tags && npm run publish:npm"
   },
@@ -31,7 +42,8 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.11.5",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
     "eslint-config-calamar": "^2.1.1",
-    "npm-scripts-info": "^0.3.6"
+    "npm-scripts-info": "^0.3.6",
+    "shelljs": "^0.7.3"
   },
   "repository": {
     "type": "git",
