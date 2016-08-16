@@ -9,15 +9,7 @@ const log = debuglog('dev');
 const app = express();
 const getEndPoint = fbWebhookGet(config.fbWebhookVerify);
 
-const postCallBack = (req, res) => {
-    // console.log('---postCallBack---', req.body.toString());
-    const result = { success: true };
-    return res ? res.send(result) : result;
-};
-const postEndPoint = postWebhook({
-    ...config.xhub,
-    next: postCallBack
-});
+const postEndPoint = postWebhook(config.xhubSns);
 app.use(bodyParser.raw({ type: 'application/json' }));
 app.get(config.main.webhookPath, getEndPoint);
 app.post(config.main.webhookPath, postEndPoint);

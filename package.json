@@ -58,7 +58,7 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "calamarble-fb-webhook-verify": "^2.0.0",
-    "calamarble-xhub-sns": "^1.0.1",
+    "calamarble-xhub-sns": "^1.0.2",
     "claudia-api-builder": "^1.5.1",
     "express": "^4.14.0"
   }

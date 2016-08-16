@@ -12,15 +12,18 @@
 
 1. ```npm run info```
 
-## Test locally
+## Test locally (express.js)
 
-1. edit ```src/aws.js```
+1. edit ```src/express.js```
 2. ```npm start```
 
-## Deploy the first time
+## Deploy the first time (aws)
 
-1. ```npm run create:aws```
+1. edit ```src/aws.js```
+2. ```npm run build:npm```
+3. ```npm run create:aws```
 
 ## Update deployed api
 
+1. edit ```src/aws.js```
 - ```npm run publish:aws```
