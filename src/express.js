@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { apiEndpoint as fbWebhookGet } from 'calamarble-fb-webhook-verify';
-import { apiEndpoint as postWebhook } from 'calamarble-xhub';
+import { apiEndpoint as postWebhook } from 'calamarble-xhub-sns';
 import { debuglog } from 'util';
 import config from '../config';
 

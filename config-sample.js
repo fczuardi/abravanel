@@ -6,7 +6,7 @@ const messages = {
         missingQueryString: 'Missing querystring',
         validationFailed: 'Failed validation.'
     },
-    xhub: {
+    xhubSns: {
         wrongSignature: 'Content signature don\'t match'
     }
 };
@@ -21,9 +21,13 @@ export default {
         token: 'FB_VERIFY_TOKEN',
         messages: messages.fbWebhookVerify
     },
-    xhub: {
+    xhubSns: {
         secret: 'FB_APP_SECRET',
         algo: 'sha1',
-        messages: messages.xhub
+        topicArn: 'AWS_SNS_TOPIC_ARN',
+        awsConfig: {
+            region: 'us-east-1'
+        },
+        messages: messages.xhubSns
     }
 };
