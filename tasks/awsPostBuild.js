@@ -7,5 +7,4 @@ cd('dist/aws');
 cp('../npm/src/aws.js', '.');
 cp('../npm/package.json', '.');
 sed('-i', '../config', './config', 'aws.js');
-sed('-i', 'exports.default = api;', 'module.exports = api;', 'aws.js');
 sed('-i', /^{/, `{${filesField}`, 'package.json');
